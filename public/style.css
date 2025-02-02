@@ -1,0 +1,130 @@
+/* style.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  #app-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+  
+  /* Left Panel - Code Editor */
+  #editor-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ccc;
+  }
+  
+  #code-editor {
+    flex: 1;
+    /* CodeMirror will fill this container */
+  }
+  
+  /* Right Panel - Chat and Lesson History */
+  #chat-panel {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  #chat-history {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+  }
+  
+  .chat-message {
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  .user-message.latest {
+    background-color: #e0e7ff;
+    color: #000080;
+  }
+  
+  .user-message.old {
+    background-color: #f0f4ff;
+    color: #5a6f9d;
+  }
+  
+  .tutor-message.latest {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ccc;
+  }
+  
+  .tutor-message.old {
+    background-color: #f7f7f7;
+    color: #555555;
+    border: 1px solid #ddd;
+  }
+  
+  #chat-input-area {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  #chat-input {
+    flex: 1;
+    padding: 5px;
+    font-size: 1em;
+  }
+  
+  #chat-input-area button {
+    padding: 5px 10px;
+    margin-left: 5px;
+  }
+  
+  /* Lesson History list */
+  #lesson-history {
+    margin-bottom: 10px;
+  }
+  
+  #lesson-history ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  #lesson-history li {
+    padding: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+  
+  #lesson-history li:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Buttons */
+  button {
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  
+  /* Responsive adjustments for mobile */
+  @media (max-width: 768px) {
+    #app-container {
+      flex-direction: column;
+    }
+    
+    #chat-panel {
+      width: 100%;
+      height: 40vh;
+    }
+    
+    #editor-panel {
+      height: 60vh;
+    }
+  }
+  

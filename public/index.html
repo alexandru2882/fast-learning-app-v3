@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fast Learning App V2</title>
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app-container">
+    <!-- Left Panel: Code Editor -->
+    <div id="editor-panel">
+      <div id="code-editor"></div>
+      <button id="submit-code-btn">Submit Code</button>
+    </div>
+    <!-- Right Panel: Chat Interface and Lesson History -->
+    <div id="chat-panel">
+      <div id="chat-history"></div>
+      <div id="lesson-history">
+        <h3>Past Lessons</h3>
+        <ul id="past-lessons-list"></ul>
+      </div>
+      <div id="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type your message here...">
+        <button id="send-chat-btn">Send</button>
+      </div>
+      <button id="return-current-btn" style="display: none;">Return to Current Lesson</button>
+      <button id="clear-history-btn">Clear History</button>
+    </div>
+  </div>
+  
+  <!-- CodeMirror JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+  <!-- Custom script -->
+  <script src="script.js"></script>
+</body>
+</html>
