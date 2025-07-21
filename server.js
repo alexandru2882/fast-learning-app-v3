@@ -2,21 +2,19 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 
 // OpenAI API integration:
-const { Configuration, OpenAIApi } = require("openai");
+const OpenAI = require("openai");
 
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // Your OpenAI API key from the .env file
 });
-const openai = new OpenAIApi(configuration);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON bodies
-app.use(bodyParser.json());
+app.use(express.json());
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -41,14 +39,14 @@ app.post('/chat', async (req, res) => {
     prompt += `User: ${message}\nTutor:`;
 
     // Use the Chat API endpoint (gpt-3.5-turbo) to generate a response.
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "You are Tutor Bot. Provide clear, helpful answers." },
         { role: "user", content: prompt }
       ]
     });
-    const reply = completion.data.choices[0].message.content;
+    const reply = completion.choices[0].message.content;
     res.json({ reply });
   } catch (error) {
     console.error('Error in /chat:', error.response ? error.response.data : error.message);
@@ -84,14 +82,14 @@ The lesson should include:
   - A coding exercise for the student.
 Provide clear, concise instructions.
     `;
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "You are Tutor Bot providing interactive lessons." },
         { role: "user", content: prompt }
       ]
     });
-    const lessonContent = completion.data.choices[0].message.content;
+    const lessonContent = completion.choices[0].message.content;
     res.json({ prompt: lessonContent, topic });
   } catch (error) {
     console.error('Error in /lesson:', error.response ? error.response.data : error.message);
@@ -119,14 +117,14 @@ ${code}
 
 Provide polite, concise feedback. If the code is correct, indicate that it is correct and suggest moving on to the next lesson.
     `;
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "You are Tutor Bot reviewing code submissions." },
         { role: "user", content: prompt }
       ]
     });
-    const feedback = completion.data.choices[0].message.content;
+    const feedback = completion.choices[0].message.content;
     res.json({ feedback });
   } catch (error) {
     console.error('Error in /submit-code:', error.response ? error.response.data : error.message);
