@@ -136,5 +136,5 @@ Provide polite, concise feedback. If the code is correct, indicate that it is co
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Fast Learning App backend is running on port ${PORT}`);
+  console.log(`Fast Learning App V3 backend is running on port ${PORT}`);
 });
